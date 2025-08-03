@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        override: true
+        components: rustfmt, clippy
+    
+    - name: Check formatting
+      run: cargo fmt -- --check
+      working-directory: bootstrap/forgec0
+    
+    - name: Run clippy
+      run: cargo clippy -- -D warnings
+      working-directory: bootstrap/forgec0
+    
+    - name: Run tests
+      run: cargo test --verbose
+      working-directory: bootstrap/forgec0
+    
+    - name: Build
+      run: cargo build --verbose
+      working-directory: bootstrap/forgec0
+
+  # Stub for future Sigstore integration
+  sigstore:
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Sigstore signing (TODO)
+      run: echo "Sigstore signing will be implemented in Phase β"
