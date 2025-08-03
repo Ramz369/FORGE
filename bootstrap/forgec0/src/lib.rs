@@ -3,6 +3,7 @@ pub mod lexer;
 pub mod parser;
 pub mod ir;
 pub mod lower;
+pub mod capability_check;
 
 // Re-export commonly used types
 pub use lexer::{Token, tokenize};
@@ -10,6 +11,7 @@ pub use ast::{Effect, Capability, Type, Expr, Stmt, Module};
 pub use parser::{Parser, ParseError};
 pub use ir::{IrModule, IrFunction, IrCapability};
 pub use lower::lower_module;
+pub use capability_check::{capability_subsumes, effect_join};
 
 /// Legacy lexer function for backward compatibility
 /// Deprecated: Use lexer::tokenize() instead

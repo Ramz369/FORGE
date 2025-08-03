@@ -8,7 +8,10 @@ pub fn capability_subsumes(required: &Capability, provided: &Capability) -> bool
     let required_effect = effect_join(&required.effects);
     let provided_effect = effect_join(&provided.effects);
     
-    if !provided_effect.subsumes(&required_effect) {
+    // Provided must be at least as permissive as required
+    // In the lattice: Pure < Alloc < Io < Net
+    // So Net can satisfy Io requirements
+    if required_effect > provided_effect {
         return false;
     }
     
