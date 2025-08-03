@@ -1,5 +1,7 @@
 # Forge Lang Ω
 
+[![CI](https://github.com/Ramz369/FORGE/actions/workflows/ci.yml/badge.svg)](https://github.com/Ramz369/FORGE/actions/workflows/ci.yml)
+
 A revolutionary programming language designed as the genetic substrate for self-evolving AI ecosystems.
 
 ## Vision
