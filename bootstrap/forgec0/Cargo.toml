@@ -1,0 +1,10 @@
+[package]
+name = "forgec0"
+version = "0.0.1-alpha"
+edition = "2021"
+
+[dependencies]
+
+[[example]]
+name = "cap_demo"
+path = "examples/cap_demo.rs"

@@ -1,0 +1,9 @@
+module demo.capabilities !{energy ≤ 10mJ}
+
+fn process(data: Text) -> Int !{net, io, tokens ≤ 100}
+
+fn transform(input: Vec, config: Config) -> Result !{io, alloc}
+
+fn pure_compute(x: Int, y: Int) -> Int !{pure}
+
+fn local_only() -> Text !{io, latency ≤ 50ms}
